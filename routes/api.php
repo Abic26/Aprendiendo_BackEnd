@@ -46,4 +46,5 @@ Route::delete("/ejemplo3",function(Request $request){
 Route::get("ejemplo4",function(Request $request){
     $message=["aprendiendo"=>"con practica"];
     return response()->json($message);
+    
 });
