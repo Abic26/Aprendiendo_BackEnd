@@ -2,6 +2,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\motoController;
+use App\Http\Controllers\Api\gatoController;
+use App\Http\Controllers\Api\perroController;
+use App\Http\Controllers\Api\pagAndresDatosController;
+use App\Http\Controllers\Api\pagBoutiqueController;
+use App\Http\Controllers\Api\tiendaRopaController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +26,47 @@ use App\Http\Controllers\Api\motoController;
 //     return $request->user();
 // });
 
-// Route::get("/Motos",motoController@read);
+Route::get("/contactos", [pagAndresDatosController::class, 'read']);
+Route::post("/contactos", [pagAndresDatosController::class, 'create']);
+
+
+Route::get("/DatosBoutique", [pagBoutiqueController::class, 'read']);
+Route::post("/DatosBoutique", [pagBoutiqueController::class, 'create']);
+Route::get("/DatosBoutique/{nombre}",[pagBoutiqueController::class, 'searchName']);
+Route::delete("/DatosBoutique/{id}", [pagBoutiqueController::class, 'delete']);
+Route::put("/DatosBoutique/{id}", [pagBoutiqueController::class, 'update']);
+
+
+
+Route::get("/tiendaRopa", [tiendaRopaController::class, 'read']);
+Route::post("/tiendaRopa", [tiendaRopaController::class, 'create']);
+Route::delete("/tiendaRopa/{id}", [tiendaRopaController::class, 'delete']);
+Route::put("/tiendaRopa/{id}", [tiendaRopaController::class, 'update']);
+
+
+
 Route::get("/Motos", [MotoController::class, 'read']);
+Route::get("/Motos/{nombre}",[MotoController::class, 'searchName']);
 Route::post("/Motos", [MotoController::class, 'create']);
 Route::delete("/Motos/{id}", [MotoController::class, 'delete']);
 Route::put("/Motos/{id}", [MotoController::class, 'update']);
 
+
+
+Route::get("/Gatos",[gatoController::class, 'read']);
+Route::get("/Gatos/{nombre}",[gatoController::class, 'searchName']);
+Route::post("/Gatos",[gatoController::class, "create"]);
+Route::delete("/Gatos/{id}",[gatoController::class,"delete"]);
+Route::put("/Gatos/{id}", [gatoController::class, 'update']);
+
+
+
+Route::get("/Perros",[perroController::class, 'read']);
+Route::get("/Perros/{nombre}",[perroController::class, 'searchName']);
+Route::get("/Perros",[perroController::class, 'searchId']);
+Route::post("/Perros",[perroController::class, "create"]);
+Route::delete("/Perros/{id}",[perroController::class,"delete"]);
+Route::put("/Perros/{id}", [perroController::class, 'update']);
 
 
 

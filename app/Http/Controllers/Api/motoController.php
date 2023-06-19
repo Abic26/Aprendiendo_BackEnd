@@ -16,6 +16,18 @@ class motoController extends Controller
         return $data;
     }
 
+    public function searchName($marca)
+    {
+        $motos = Moto::where('marca', $marca)->first();
+    
+        if (!$motos) {
+            $mensaje = ["mensaje" => "No se encontró ningún moto con esa marca"];
+            return response()->json($mensaje);
+        }
+    
+        return response()->json($motos);
+    }
+
     public function create(Request $request){
         $moto = new Moto();
         $moto->marca = $request->input("marca");
@@ -32,7 +44,7 @@ class motoController extends Controller
 
         if (!$moto) {
             $message = ["message" => "La moto no existe"];
-            return response()->json($message, 404);
+            return response()->json($message);
         }
 
         $moto->delete();
@@ -45,7 +57,7 @@ class motoController extends Controller
         
         if (!$moto) {
             $message = ["message" => "La moto no existe"];
-            return response()->json($message, 404);
+            return response()->json($message);
         }
     
         $moto->marca = $request->input("marca");
@@ -57,13 +69,4 @@ class motoController extends Controller
         return response()->json($message);
     }
 
-
-
-    public function updates(){
-        return true;
-    }
-
-    public function deletes(){
-        return true;
-    }
 }
